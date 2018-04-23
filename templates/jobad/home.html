@@ -1,0 +1,12 @@
+{% extends 'jobad/base.html' %}
+
+{% block advertisments %}
+    <a href="{% url 'jobad:register' %}">Zarejestruj się</a><br>
+    <a href="{% url 'jobad:login' %}">Zaloguj się</a>
+    <h1>Ogłoszenia</h1>
+    <ul>
+        {% for ad in ads %}
+         <li><a href="{% url 'jobad:viewad' ad.id %}">{{ ad.name }}</a></li>
+        {% endfor %}
+    </ul>
+{% endblock %}
