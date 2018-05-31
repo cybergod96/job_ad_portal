@@ -5,6 +5,19 @@
     <title>Ogłoszenia o pracę</title>
 </head>
 <body>
+{% if user.is_authenticated %}
+    <a href="{% url 'jobad:account' %}">Konto</a>
+    <a href="{% url 'jobad:logout' %}">Wyloguj się</a>
+{% else %}
+    <a href="{% url 'jobad:register' %}">Zarejestruj się</a><br>
+    <a href="{% url 'jobad:login' %}">Zaloguj się</a>
+{% endif %}
+
 {% block advertisments %}{% endblock %}
+{% block advertisment %}{% endblock %}
+{% block apply %}{% endblock %}
+{% block login %}{% endblock %}
+{% block register %}{% endblock %}
+{% block account %}{% endblock %}
 </body>
 </html>

@@ -1,0 +1,6 @@
+{% extends 'jobad/base.html' %}
+
+{% block apply %}
+    Tutaj będzie można odpowiedzieć na ogłoszenie.
+    <a href="{% url 'jobad:viewad' ad.id%}">Powrót</a>
+{% endblock %}

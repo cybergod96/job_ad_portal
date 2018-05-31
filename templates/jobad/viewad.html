@@ -1,0 +1,9 @@
+{% extends 'jobad/base.html' %}
+
+{% block advertisment %}
+    <h1>{{ ad.name }}</h1>
+    <h3>Stanowisko: {{ ad.job_title }}</h3>
+    <p>{{ ad.description }}</p>
+    <a href="{% url 'jobad:apply' ad.id %}">Aplikuj</a>
+    <a href="{% url 'jobad:index' %}">Powrót</a>
+{% endblock %}

@@ -5,8 +5,10 @@ app_name = 'jobad'
 
 urlpatterns = [
     path('', views.index, name='index'),
-    path('ad/<int:id>', views.viewad, name='viewad'),
-    path('apply/<int:id>', views.appply, name='apply'),
+    path('ad/<int:ad_id>', views.viewad, name='viewad'),
+    path('apply/<int:ad_id>', views.appply, name='apply'),
     path('register/', views.register, name='register'),
     path('login/', views.login, name='login'),
+    path('account/', views.account, name='account'),
+    path('logout/', views.logout_view, name='logout'),
 ]
