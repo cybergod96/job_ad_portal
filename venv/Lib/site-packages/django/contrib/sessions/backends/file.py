@@ -27,10 +27,7 @@ class SessionStore(SessionBase):
         try:
             return cls._storage_path
         except AttributeError:
-            storage_path = getattr(settings, "SESSION_FILE_PATH", None)
-            if not storage_path:
-                storage_path = tempfile.gettempdir()
-
+            storage_path = getattr(settings, 'SESSION_FILE_PATH', None) or tempfile.gettempdir()
             # Make sure the storage path is valid.
             if not os.path.isdir(storage_path):
                 raise ImproperlyConfigured(
@@ -62,21 +59,15 @@ class SessionStore(SessionBase):
         Return the modification time of the file storing the session's content.
         """
         modification = os.stat(self._key_to_file()).st_mtime
-        if settings.USE_TZ:
-            modification = datetime.datetime.utcfromtimestamp(modification)
-            modification = modification.replace(tzinfo=timezone.utc)
-        else:
-            modification = datetime.datetime.fromtimestamp(modification)
-        return modification
+        return datetime.datetime.fromtimestamp(modification, timezone.utc if settings.USE_TZ else None)
 
     def _expiry_date(self, session_data):
         """
         Return the expiry time of the file storing the session's content.
         """
-        expiry = session_data.get('_session_expiry')
-        if not expiry:
-            expiry = self._last_modification() + datetime.timedelta(seconds=settings.SESSION_COOKIE_AGE)
-        return expiry
+        return session_data.get('_session_expiry') or (
+            self._last_modification() + datetime.timedelta(seconds=settings.SESSION_COOKIE_AGE)
+        )
 
     def load(self):
         session_data = {}

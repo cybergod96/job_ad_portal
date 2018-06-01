@@ -1,6 +1,7 @@
 from django.shortcuts import render
 from django.http import HttpResponse
-from django.contrib.auth import logout
+from django.contrib.auth import logout, login
+from django.contrib.auth.decorators import login_required
 
 from .models import Advertisement
 
@@ -30,6 +31,10 @@ def account(request):
 
 
 def logout_view(request):
-    #return HttpResponse(request,"Not implemented yet.")
     logout(request)
     return render(request, 'jobad/home.html', {"ads": Advertisement.objects.all()})
+
+
+@login_required
+def add_ad(request):
+    return render(request, 'jobad/addad.html')

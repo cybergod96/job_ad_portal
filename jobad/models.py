@@ -3,6 +3,7 @@ from django.contrib.auth.models import User
 
 
 class Employer(models.Model):
+    user = models.OneToOneField(User, on_delete=models.CASCADE)
     company_name = models.CharField(max_length=255)
     branch = models.CharField(max_length=255)
 
@@ -11,7 +12,6 @@ class Employer(models.Model):
 
 
 class Advertisement(models.Model):
-    user = models.OneToOneField(User, on_delete=models.CASCADE)
     employer = models.ForeignKey(Employer, on_delete=models.CASCADE)
     name = models.CharField(max_length=255)
     job_title = models.CharField(max_length=255)
