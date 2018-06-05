@@ -1,18 +1,31 @@
+{%load static %}
 <!DOCTYPE html>
 <html lang="pl">
 <head>
     <meta charset="UTF-8">
     <title>Ogłoszenia o pracę</title>
+	<link rel="stylesheet" type="text/css" href="{%static 'css/main.css' %}">
 </head>
 <body>
-{% if user.is_authenticated %}
-    Użytkownik: <strong>{{ user.get_username }}</strong>
-    <a href="{% url 'jobad:account' %}">Konto</a>
-    <a href="{% url 'jobad:logout' %}">Wyloguj się</a>
-{% else %}
-    <a href="{% url 'jobad:register' %}">Zarejestruj się</a><br>
-    <a href="{% url 'jobad:login' %}">Zaloguj się</a>
-{% endif %}
+<header><div id="naglowek">
+		<div id="menu">
+		{% if user.is_authenticated %}
+			<ol>
+				<li>Użytkownik: <strong>{{ user.get_username }}</strong></li>
+				<li><a href="{% url 'jobad:account' %}">Konto</a></li>
+				<li><a href="{% url 'jobad:logout' %}">Wyloguj się</a></li>
+			</ol>
+		{% else %}
+			<ol>
+				<li><a href="{% url 'jobad:register' %}">Zarejestruj się</a></li>
+				<li><a href="{% url 'jobad:login' %}">Zaloguj się</a>
+				</li>
+			</ol>
+		{% endif %}
+		</div>
+	</div></header>
+
+
 
 {% block advertisments %}{% endblock %}
 {% block advertisment %}{% endblock %}
