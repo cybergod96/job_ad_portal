@@ -1,5 +1,10 @@
 {% extends 'jobad/base.html' %}
 
 {% block login %}
-    Chwilowo nic tu nie ma...
+    <a href="{% url 'jobad:index' %}">Strona główna</a><br>
+    <h1>Zaloguj się</h1>
+    <form method="post">
+        {% csrf_token %}
+        {{ form }}
+    <button type="submit">Zaloguj</button>
 {% endblock %}
