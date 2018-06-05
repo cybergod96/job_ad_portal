@@ -1,9 +1,9 @@
 body{
-    font-family: "Trebuchet MS", Helvetica, sans-serif;
+    font-family: "Arial Black", Gadget, sans-serif;
 }
 header {text-align: center; height: auto; padding: 70px 0 0;}
 ol{
-    font-family: "Trebuchet MS", Helvetica, sans-serif;
+	font-weight: bold;
 	list-style-type:none;
 	padding:0;
 	margin:0;
@@ -12,7 +12,7 @@ ol{
 }
 ol > li{
 	float:left;
-	width:100px;
+	width:110px;
 	margin-left:1px;
 }
 ol > li > A{
