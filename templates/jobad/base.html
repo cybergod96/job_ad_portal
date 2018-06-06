@@ -9,6 +9,7 @@
     Użytkownik: <strong>{{ user.get_username }}</strong>
     <a href="{% url 'jobad:account' %}">Konto</a>
     <a href="{% url 'jobad:logout' %}">Wyloguj się</a>
+    <a href="{% url 'jobad:add' %}">Dodaj ogłoszenie</a>
 {% else %}
     <a href="{% url 'jobad:register' %}">Zarejestruj się</a><br>
     <a href="{% url 'jobad:login' %}">Zaloguj się</a>

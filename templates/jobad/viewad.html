@@ -2,6 +2,7 @@
 
 {% block advertisment %}
     <h1>{{ ad.name }}</h1>
+    <h3>Firma: {{ ad.employer.company_name }}</h3>
     <h3>Stanowisko: {{ ad.job_title }}</h3>
     <p>{{ ad.description }}</p>
     <a href="{% url 'jobad:apply' ad.id %}">Aplikuj</a>

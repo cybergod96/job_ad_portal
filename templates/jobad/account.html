@@ -1,5 +1,10 @@
 {% extends 'jobad/base.html' %}
 
 {% block account %}
-    Strona konta tutaj.
+    <h2>Ogłoszenia</h2>
+    {% for ad in ads %}
+        <a href="{% url 'jobad:viewad' ad.id %}">{{ ad.name }}</a>
+        <a href="{% url 'jobad:edit' ad.id %}">Edytuj</a>
+        <a href="{% url 'jobad:remove' ad.id %}">Usuń</a>
+    {% endfor %}
 {% endblock %}

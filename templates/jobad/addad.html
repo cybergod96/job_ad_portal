@@ -1,5 +1,9 @@
 {% extends 'jobad/base.html' %}
 
 {% block addad %}
-    Tutaj będzie formularz dodawania ogłoszenia.
+    <form method="post" action=".">
+        {% csrf_token %}
+        {{ form|linebreaks }}
+        <input type="submit" value="Dodaj ogłoszenie">
+    </form>
 {% endblock %}
