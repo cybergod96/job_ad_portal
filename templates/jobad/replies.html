@@ -1,0 +1,11 @@
+{% extends 'jobad/base.html' %}
+
+{% block replies %}
+    {% for r in replies %}
+        <p id="reply">
+            {{ r.get_html }}
+        </p>
+    {% endfor %}
+    {{ answer }}
+    <a href="{% url 'jobad:account' %}">Powrót</a>
+{% endblock %}

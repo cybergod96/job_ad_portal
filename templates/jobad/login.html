@@ -5,6 +5,8 @@
     <h1>Zaloguj się</h1>
     <form method="post">
         {% csrf_token %}
-        {{ form }}
+        <table>
+        {{ form.as_table }}
+        </table>
     <button type="submit">Zaloguj</button>
 {% endblock %}

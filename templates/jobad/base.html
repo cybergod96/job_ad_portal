@@ -8,6 +8,8 @@
 </head>
 <body>
 <header><div id="naglowek">
+
+        <a href="{% url 'jobad:index' %}">TU JEST LOGO</a>
 		<div id="menu">
 		{% if user.is_authenticated %}
 			<ol>
@@ -33,5 +35,6 @@
 {% block register %}{% endblock %}
 {% block account %}{% endblock %}
 {% block addad %}{% endblock %}
+{% block replies %}{% endblock %}
 </body>
 </html>

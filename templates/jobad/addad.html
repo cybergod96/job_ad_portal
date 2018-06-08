@@ -1,9 +1,16 @@
 {% extends 'jobad/base.html' %}
-
+{% load static %}
 {% block addad %}
-    <form method="post" action=".">
+    <form method="post" name="applyform">
         {% csrf_token %}
-        {{ form|linebreaks }}
+        <table>
+            {{ form.as_table }}
+        </table>
+        <h2>Formularz odpowiedzi</h2>
+        <input type="hidden" value="1" id="additional_fields_number", name="additional_fields_number">
+        <div id="additional_fields"></div>
+        <script type="text/javascript" src="{% static "js/additional_fields.js" %}"></script>
+        <a href="#" onclick="appendField(false)">Dodaj pole</a><br>
         <input type="submit" value="Dodaj ogłoszenie">
     </form>
 {% endblock %}

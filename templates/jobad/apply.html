@@ -1,6 +1,12 @@
 {% extends 'jobad/base.html' %}
 
 {% block apply %}
-    Tutaj będzie można odpowiedzieć na ogłoszenie.
+    <form method="post">
+    {% csrf_token %}
+    <table>
+        {{ form.as_table }}
+    </table>
+    <input type="submit" value="Aplikuj">
+    </form>
     <a href="{% url 'jobad:viewad' ad.id%}">Powrót</a>
 {% endblock %}

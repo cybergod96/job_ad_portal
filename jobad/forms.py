@@ -5,14 +5,15 @@ Definition of forms.
 from django import forms
 from django.contrib.auth.models import User
 
-from .models import Employer
+from .models import Employer, Advertisement, ApplyForm, AdvertisementReply
+
 
 class RegisterForm(forms.Form):
-    username = forms.CharField(max_length=255)
-    email = forms.CharField(max_length=255)
-    company_name = forms.CharField(max_length=255)
-    branch = forms.CharField(max_length=255)
-    password = forms.CharField(widget=forms.PasswordInput())
+    username = forms.CharField(max_length=255, label=u"Nazwa użytkownika")
+    email = forms.CharField(max_length=255, label=u"E-mail")
+    company_name = forms.CharField(max_length=255, label="Nazwa firmy")
+    branch = forms.CharField(max_length=255, label="Branża")
+    password = forms.CharField(widget=forms.PasswordInput(), label="Hasło")
 
     def save(self):
         user = User.objects.create_user(username=self.cleaned_data["username"],
@@ -21,25 +22,32 @@ class RegisterForm(forms.Form):
         user.save()
 
         employer = Employer.objects.create(user=user,
-                                          company_name=self.cleaned_data["company_name"],
-                                          branch=self.cleaned_data["branch"])
+                                           company_name=self.cleaned_data["company_name"],
+                                           branch=self.cleaned_data["branch"])
         employer.save()
-
-
 
         return employer
 
 
 class LoginForm(forms.Form):
-    username = forms.CharField(max_length=255)
-    password = forms.CharField(widget=forms.PasswordInput())
+    username = forms.CharField(max_length=255, label="Nazwa użytkownka")
+    password = forms.CharField(widget=forms.PasswordInput(), label="Hasło")
 
-class NewAdvertisment(forms.Form):
-    name = forms.CharField(label='Nazwa ogłoszenia', max_length=255)
-    job_title = forms.CharField(label='Praca', max_length=255)
 
 class AdvertisementApplyForm(forms.Form):
-    answer = forms.CharField(max_length=512, widget=forms.Textarea)
+    fields_number = 0
+    def add_fields(self, ad_id):
+        fields_dict = eval(ApplyForm.objects.get(advertisement_id=ad_id).content)
+        self.fields_number = int(fields_dict['fields_number'])
+        for i in range(1, self.fields_number + 1):
+            field = fields_dict['field_%d' % i]
+            if field['type'] == "text":
+                self.fields['field_%d' % i] = forms.CharField(label=field['label'])
+            elif field['type'] == "textarea":
+                self.fields['field_%d' % i] = forms.CharField(label=field['label'], widget=forms.Textarea)
+            elif field['type'] == "number":
+                self.fields['field_%d' % i] = forms.IntegerField(label=field['label'])
+
 
 
 class AddAdForm(forms.Form):

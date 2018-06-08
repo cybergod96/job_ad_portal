@@ -1,6 +1,10 @@
 from django.db import models
 from django.contrib.auth.models import User
 
+from django.utils.html import format_html
+
+import json
+
 
 class Employer(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
@@ -24,4 +28,23 @@ class Advertisement(models.Model):
 class ApplyForm(models.Model):
     advertisement = models.ForeignKey(Advertisement, on_delete=models.CASCADE)
     content = models.CharField(max_length=255)
-    reply = models.CharField(max_length=255)
+
+
+class AdvertisementReply(models.Model):
+    advertisement = models.ForeignKey(Advertisement, on_delete=models.CASCADE)
+    content = models.CharField(max_length=2048)
+
+    def __str__(self):
+        if len(self.content) > 32:
+            return self.content[:32] + "..."
+        else:
+            return self.content
+
+    def get_html(self):
+        html = ""
+        d = eval(self.content)
+        for key in d:
+            html += "<strong>" + str(d[key]['label']) + "</strong>:<br>" + str(d[key]['value'])
+            html += "<br>"
+        return format_html(html)
+

@@ -5,7 +5,9 @@
     <h1>Zarejestruj się</h1>
         <form method="post">
         {% csrf_token %}
-        {{ form }}
+            <table>
+                {{ form.as_table }}
+            </table>
         <button type="submit">Zarejestruj</button>
     </form>
 {% endblock %}
