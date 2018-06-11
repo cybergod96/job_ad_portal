@@ -4,29 +4,34 @@
 <head>
     <meta charset="UTF-8">
     <title>Ogłoszenia o pracę</title>
-	<link rel="stylesheet" type="text/css" href="{%static 'css/main.css' %}">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
 </head>
 <body>
-<header><div id="naglowek">
-
-        <a href="{% url 'jobad:index' %}">TU JEST LOGO</a>
-		<div id="menu">
-		{% if user.is_authenticated %}
-			<ol>
-				<li>Użytkownik: <strong>{{ user.get_username }}</strong></li>
-				<li><a href="{% url 'jobad:account' %}">Konto</a></li>
-				<li><a href="{% url 'jobad:logout' %}">Wyloguj się</a></li>
-                <li><a href="{% url 'jobad:add' %}">Dodaj ogłoszenie</a></li>
-			</ol>
-		{% else %}
-			<ol>
-				<li><a href="{% url 'jobad:register' %}">Zarejestruj się</a></li>
-				<li><a href="{% url 'jobad:login' %}">Zaloguj się</a>
-				</li>
-			</ol>
-		{% endif %}
-		</div>
-	</div></header>
+<nav class="navbar navbar-inverse">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <a class="navbar-brand" href="{% url 'jobad:index' %}">TU JEST LOGO</a>
+    </div>
+      {% if user.is_authenticated %}
+          <ul class="nav navbar-nav navbar-right">
+            <li>Użytkownik: {{ user.get_username }}</li>
+            <li><a href="{% url 'jobad:account' %}">Konto</a></li>
+            <li><a href="{% url 'jobad:logout' %}">Wyloguj się</a></li>
+            <li><a href="{% url 'jobad:add' %}">Dodaj ogłoszenie</a></li>
+          </ul>
+      {% else %}
+          <ul class="nav navbar-nav navbar-right">
+              <li><a href="{% url 'jobad:register' %}">Zarejestruj się</a></li>
+              <li><a href="{% url 'jobad:login' %}">Zaloguj się</a></li>
+          </ul>
+      {% endif %}
+  </div>
+</nav>
+</header>
 
 {% block advertisments %}{% endblock %}
 {% block advertisment %}{% endblock %}
