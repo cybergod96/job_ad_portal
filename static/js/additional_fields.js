@@ -35,21 +35,26 @@ var i = num;
 form = document.forms["applyform"];
 var div = document.createElement("div");
 div.id = "div_field_"+i;
+div.className = "field_box";
 var label = document.createElement("label");
 label.htmlFor="field"+i+"_label";
 label.innerHTML="Etykieta: ";
 label.id = "label_"+i;
+label.className = "field_box_label";
 var label2 = document.createElement("label");
 label2.htmlFor="field"+i+"_type";
 label2.innerHTML="Typ: ";
 label2.id = "label2_"+i;
+label2.className = "field_box_label";
 var label_txt = document.createElement("input");
 label_txt.name="field"+i+"_label";
 label_txt.type="text";
 label_txt.id="txt_"+i;
+label_txt.className="field_box_label";
 var select = document.createElement("select");
 select.name="field"+i+"_type";
 select.id="select_"+i;
+select.class="field_box_select";
 var opt_txt = document.createElement("option");
 opt_txt.value = "text";
 opt_txt.innerHTML = "Pole tekstowe";
@@ -68,6 +73,7 @@ if(!first){
 	a_del.onclick = function(){ removeField(parseInt(this.id[this.id.length-1])); document.getElementById("additional_fields_number").value=num-1;}
 	a_del.innerHTML = "Usuń";
 	a_del.id="del_"+i;
+	a_del.className="field_box_del";
 }
 
 div.appendChild(label);
