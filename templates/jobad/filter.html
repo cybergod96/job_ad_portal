@@ -1,9 +1,6 @@
 {% extends 'jobad/base.html' %}
 
 {% block filter %}
-    <div id="container">
-    <div id="row">
-    <div id="col"
     <form method="get">
     <table>
     {{ ads.form.as_table }}
@@ -16,6 +13,4 @@
          <li><a href="{% url 'jobad:viewad' ad.id %}">{{ ad.name }}</a></li>
         {% endfor %}
     </ul>
-    </div>
-    </div>
 {% endblock %}
