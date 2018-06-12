@@ -8,7 +8,7 @@ from django.shortcuts import redirect
 from .filters import AdFilter
 
 from .models import Advertisement, Employer, ApplyForm
-from .forms import AddAdForm, LoginForm, RegisterForm, AdvertisementApplyForm, AdvertisementReply, FilterForm
+from .forms import AddAdForm, LoginForm, RegisterForm, AdvertisementApplyForm, AdvertisementReply
 
 import json
 
