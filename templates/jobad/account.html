@@ -1,12 +1,14 @@
 {% extends 'jobad/base.html' %}
 
 {% block account %}
+    <div class="asd2">
     <h2>Moje ogłoszenia</h2>
     {% for ad in ads %}
-        <a href="{% url 'jobad:viewad' ad.id %}">{{ ad.name }}</a>
-        <a href="{% url 'jobad:replies' ad.id %}">Odpowiedzi</a>
-        <a href="{% url 'jobad:edit' ad.id %}">Edytuj</a>
-        <a href="{% url 'jobad:remove' ad.id %}">Usuń</a>
+        <div class="title"><h3><a href="{% url 'jobad:viewad' ad.id %}">{{ ad.name }}</a></h3></div>
+        <a href="{% url 'jobad:replies' ad.id %}" class="btn btn-primary btn-sm">Odpowiedzi</a>
+        <a href="{% url 'jobad:edit' ad.id %}" class="btn btn-primary btn-sm">Edytuj</a>
+        <a href="{% url 'jobad:remove' ad.id %}" class="btn btn-primary btn-sm">Usuń</a>
         <br>
     {% endfor %}
+    </div>
 {% endblock %}

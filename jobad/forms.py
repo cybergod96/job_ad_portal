@@ -9,11 +9,11 @@ from .models import Employer, Advertisement, ApplyForm, AdvertisementReply
 
 
 class RegisterForm(forms.Form):
-    username = forms.CharField(max_length=255, label=u"Nazwa użytkownika")
-    email = forms.CharField(max_length=255, label=u"E-mail")
-    company_name = forms.CharField(max_length=255, label="Nazwa firmy")
-    branch = forms.CharField(max_length=255, label="Branża")
-    password = forms.CharField(widget=forms.PasswordInput(), label="Hasło")
+    username = forms.CharField(max_length=255, label=u"Nazwa użytkownika",widget=forms.TextInput(attrs={'class':'form-control','placeholder':'Nazwa użytkownika'}))
+    email = forms.CharField(max_length=255, label=u"E-mail",widget=forms.TextInput(attrs={'class':'form-control','placeholder':'E-mail'}))
+    company_name = forms.CharField(max_length=255, label="Nazwa firmy",widget=forms.TextInput(attrs={'class':'form-control','placeholder':'Nazwa firmy'}))
+    branch = forms.CharField(max_length=255, label="Branża",widget=forms.TextInput(attrs={'class':'form-control','placeholder':'Branża'}))
+    password = forms.CharField(widget=forms.PasswordInput(attrs={'class':'form-control','placeholder':'Hasło'}), label="Hasło")
 
     def save(self):
         user = User.objects.create_user(username=self.cleaned_data["username"],
@@ -30,8 +30,8 @@ class RegisterForm(forms.Form):
 
 
 class LoginForm(forms.Form):
-    username = forms.CharField(max_length=255, label="Nazwa użytkownka")
-    password = forms.CharField(widget=forms.PasswordInput(), label="Hasło")
+    username = forms.CharField(max_length=255, label="Nazwa użytkownka",widget=forms.TextInput(attrs={'class':'form-control','placeholder':'Nazwa użytkownika'}))
+    password = forms.CharField(widget=forms.PasswordInput(attrs={'class':'form-control','placeholder':'Hasło'}), label="Hasło")
 
 
 class AdvertisementApplyForm(forms.Form):
@@ -51,6 +51,6 @@ class AdvertisementApplyForm(forms.Form):
 
 
 class AddAdForm(forms.Form):
-    name = forms.CharField(max_length=255, label=u"Tytuł")
-    job_title = forms.CharField(max_length=255, label=u"Stanowisko")
-    description = forms.CharField(max_length=512, label=u"Opis", widget=forms.Textarea)
+    name = forms.CharField(max_length=255, label=u"Tytuł", widget=forms.TextInput(attrs={'class':'form-control','placeholder':'Tytuł'}))
+    job_title = forms.CharField(max_length=255, label=u"Stanowisko", widget=forms.TextInput(attrs={'class':'form-control','placeholder':'Stanowisko'}))
+    description = forms.CharField(max_length=512, label=u"Opis", widget=forms.Textarea(attrs={'class':'form-control','placeholder':'Opis'}))

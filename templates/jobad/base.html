@@ -3,30 +3,32 @@
 <html lang="pl">
 <head>
     <meta charset="UTF-8">
-    <title>Ogłoszenia o pracę</title>
+    <title>Ogłoszenia o pracę PPK</title>
 	<meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="{%static 'css/main.css' %}">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <!-- Latest compiled and minified JavaScript -->
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
 
 </head>
 <body>
-<nav class="navbar navbar-inverse">
+<nav class="navbar navbar-inverse navbar-fixed-top">
   <div class="container-fluid">
     <div class="navbar-header">
-      <a class="navbar-brand" href="{% url 'jobad:index' %}">TU JEST LOGO</a>
+        <a class="navbar-brand" href="{% url 'jobad:index' %}"><strong>Strona główna</strong></a>
     </div>
       {% if user.is_authenticated %}
           <ul class="nav navbar-nav navbar-right">
-            <li>Użytkownik: {{ user.get_username }}</li>
+              <li><p class="navbar-text">Użytkownik: {{ user.get_username }}</p></li>
             <li><a href="{% url 'jobad:account' %}">Konto</a></li>
-            <li><a href="{% url 'jobad:logout' %}">Wyloguj się</a></li>
             <li><a href="{% url 'jobad:add' %}">Dodaj ogłoszenie</a></li>
+            <li><a href="{% url 'jobad:logout' %}">Wyloguj się</a></li>
           </ul>
       {% else %}
           <ul class="nav navbar-nav navbar-right">
-              <li><a href="{% url 'jobad:register' %}">Zarejestruj się</a></li>
-              <li><a href="{% url 'jobad:login' %}">Zaloguj się</a></li>
+              <li><a href="{% url 'jobad:register' %}"><span class="glyphicon glyphicon-user"></span> Zarejestruj się</a></li>
+              <li><a href="{% url 'jobad:login' %}"><span class="glyphicon glyphicon-log-in"></span> Zaloguj się</a></li>
           </ul>
       {% endif %}
   </div>
