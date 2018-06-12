@@ -1,0 +1,14 @@
+{% extends 'jobad/base.html' %}
+
+{% block filter %}
+    <form method="get">
+    {{ ads.form.as_p }}
+    <button type="submit">Search</button>
+    </form>
+
+    <ul>
+        {% for ad in ads.qs %}
+         <li><a href="{% url 'jobad:viewad' ad.id %}">{{ ad.name }}</a></li>
+        {% endfor %}
+    </ul>
+{% endblock %}

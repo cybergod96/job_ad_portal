@@ -11,6 +11,7 @@ urlpatterns = [
     path('ad/<int:ad_id>/edit', views.edit_ad, name='edit'),
     path('ad/<int:ad_id>/replies', views.view_replies, name='replies'),
     path('register/', views.register, name='register'),
+    path('search/', views.search, name='search'),
     path('login/', views.login, name='login'),
     path('account/', views.account, name='account'),
     path('logout/', views.logout_view, name='logout'),

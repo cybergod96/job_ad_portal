@@ -8,4 +8,6 @@
          <li><a href="{% url 'jobad:viewad' ad.id %}">{{ ad.name }}</a></li>
         {% endfor %}
     </ul>
+    <button type="button" class="btn btn-default"><a href="{% url 'jobad:search' %}">Filtruj</a></button>
+
 {% endblock %}

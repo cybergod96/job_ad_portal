@@ -5,9 +5,10 @@ from django.contrib import auth
 from django.contrib.auth.decorators import login_required
 from django.views.decorators.csrf import csrf_protect
 from django.shortcuts import redirect
+from .filters import AdFilter
 
 from .models import Advertisement, Employer, ApplyForm
-from .forms import AddAdForm, LoginForm, RegisterForm, AdvertisementApplyForm, AdvertisementReply
+from .forms import AddAdForm, LoginForm, RegisterForm, AdvertisementApplyForm, AdvertisementReply, FilterForm
 
 import json
 
@@ -62,6 +63,11 @@ def register(request):
         form = RegisterForm()
 
     return render(request, 'jobad/register.html', {'form': form})
+
+
+def search(request):
+    query = AdFilter(request.GET, queryset=Advertisement.objects.all())
+    return render(request, 'jobad/filter.html', {'ads': query})
 
 
 @csrf_protect
