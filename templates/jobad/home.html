@@ -1,13 +1,13 @@
 {% extends 'jobad/base.html' %}
 
 {% block advertisments %}
-
+    <div class="container">
     <h1>Ogłoszenia</h1>
-    <ul>
+    <div class="list-group">
         {% for ad in ads %}
-         <li><a href="{% url 'jobad:viewad' ad.id %}">{{ ad.name }}</a></li>
+         <a href="{% url 'jobad:viewad' ad.id %}" class="list-group-item">{{ ad.name }}</a>
         {% endfor %}
-    </ul>
-    <button type="button" class="btn btn-default"><a href="{% url 'jobad:search' %}">Filtruj</a></button>
-
+    </div>
+    <a href="{% url 'jobad:search' %}" class="btn btn-primary">Filtruj</a>
+    </div>
 {% endblock %}

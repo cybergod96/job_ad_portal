@@ -1,12 +1,26 @@
 {% extends 'jobad/base.html' %}
 
 {% block apply %}
+    <div class="container-medium">
     <form method="post">
     {% csrf_token %}
-    <table>
-        {{ form.as_table }}
-    </table>
-    <input type="submit" value="Aplikuj">
+    {% for error in form.non_field_errors %}
+                    <div class="form-group has-errors text-danger small">
+                        {{error}}
+                    </div>
+        {% endfor %}
+        {% for field in form %}
+                    <div class="form-group has-errors text-danger small">
+                        {{field.errors}}
+                    </div>
+                    <div class="form-group has-errors text-danger small">
+                    </div>
+                    <div class="form-group">
+                        {{field}}
+                    </div>
+                    {% endfor %}
+    <input type="submit" value="Aplikuj" class="btn btn-primary">
     </form>
-    <a href="{% url 'jobad:viewad' ad.id%}">Powrót</a>
+    <div class="dodaj-pole"><a href="{% url 'jobad:viewad' ad.id%}">Powrót</a></div>
+    </div>
 {% endblock %}

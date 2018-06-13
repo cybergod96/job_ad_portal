@@ -4,34 +4,77 @@
         background-repeat: no-repeat;
         background-position: center;
         background-attachment: fixed;
+        font-family: 'Montserrat';
       }
 
- .asd{
+ .container-small{
         background: rgba(45, 45, 125, 0.58);
         color: white;
         padding: 40px;
         margin: 0 auto;
-        margin-top: 200px;
+        margin-top: 150px;
         padding-bottom: 60px;
         box-shadow: 10px 10px 5px rgba(6, 1, 1, 0.43);
         width:30%;
+
+ }
+  .container-medium{
+        background: rgba(45, 45, 125, 0.58);
+        color: white;
+        padding: 40px;
+        margin: 0 auto;
+        margin-top: 150px;
+        padding-bottom: 60px;
+        box-shadow: 10px 10px 5px rgba(6, 1, 1, 0.43);
+        width:45%;
 
  }
 
 h1{
         text-align: center;
 }
- .asd2{
+h2 > a{
+    color:#f7f7f7;
+}
+h2 > a:hover{
+    color:white;
+    text-decoration: none;
+}
+ .container{
         background: rgba(45, 45, 125, 0.58);
         color: white;
         padding: 40px;
         margin: 0 auto;
-        margin-top: 200px;
+        margin-top: 150px;
         padding-bottom: 60px;
         box-shadow: 10px 10px 5px rgba(6, 1, 1, 0.43);
         width:60%;
 
  }
- .title a:link{
-     color: #000;
- }
+.dodaj-pole > a{
+    color:#f7f7f7;
+}
+.dodaj-pole > a:hover{
+    color:white;
+    text-decoration: none;
+}
+.field_box{
+    color:black;
+}
+.field_box_textarea{
+    margin-right: 10px;
+    color:black;
+}
+.field_box_label{
+    margin-right: 10px;
+    color:white;
+}
+.field_box_select{
+    color:black;
+}
+#id_field_1{
+    color:black;
+}
+#text-col > textarea{
+    background-color: white;
+}

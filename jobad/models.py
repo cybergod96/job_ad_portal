@@ -44,7 +44,7 @@ class AdvertisementReply(models.Model):
         html = ""
         d = eval(self.content)
         for key in d:
-            html += "<strong>" + str(d[key]['label']) + "</strong>:<br>" + str(d[key]['value'])
+            html += "<h3>" + str(d[key]['label']) + ":</h3><br>" + "<textarea class='form-control' rows='5' id='comment' readonly background:white>" + str(d[key]['value']) +"</textarea>"
             html += "<br>"
         return format_html(html)
 

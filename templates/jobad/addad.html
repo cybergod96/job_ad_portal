@@ -1,8 +1,9 @@
 {% extends 'jobad/base.html' %}
 {% load static %}
 {% block addad %}
-    <div class="asd">
+    <div class="container-medium">
     <form method="post" name="applyform">
+    <h1>Dodaj ogłoszenie</h1>
         {% csrf_token %}
 {% csrf_token %}
         {% for error in form.non_field_errors %}
@@ -21,11 +22,11 @@
                     </div>
                     {% endfor %}
         <h2>Formularz odpowiedzi</h2>
-        <input type="hidden" value="1" id="additional_fields_number", name="additional_fields_number">
-        <div id="additional_fields"></div>
+        <input type="hidden" value="1" id="additional_fields_number" name="additional_fields_number">
+        <div id="additional_fields" class="form-group"></div>
 
         <script type="text/javascript" src="{% static "js/additional_fields.js" %}"></script>
-        <a href="#" onclick="appendField(false)">Dodaj pole</a><br>
+        <div class="dodaj-pole"><a href="#" onclick="appendField(false)">Dodaj pole</a></div>
         <button class="btn btn-primary" style="width:100%">Dodaj ogłoszenie</button>
     </form>
     </div>

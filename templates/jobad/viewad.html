@@ -1,10 +1,12 @@
 {% extends 'jobad/base.html' %}
 
 {% block advertisment %}
+    <div class="container-medium">
     <h1>{{ ad.name }}</h1>
-    <h3>Firma: {{ ad.employer.company_name }}</h3>
-    <h3>Stanowisko: {{ ad.job_title }}</h3>
-    <p>{{ ad.description }}</p>
-    <a href="{% url 'jobad:apply' ad.id %}">Aplikuj</a>
-    <a href="{% url 'jobad:index' %}">Powrót</a>
+    <h3>Firma: <strong>{{ ad.employer.company_name }}</strong></h3>
+    <h3>Stanowisko: <strong>{{ ad.job_title }}</strong></h3>
+    <p><div id="text-col"><textarea class="form-control" rows="8" id="comment" readonly>{{ ad.description }}</textarea></div></p>
+    <a href="{% url 'jobad:apply' ad.id %}" class="btn btn-primary">Aplikuj</a>
+    <a href="{% url 'jobad:index' %}" class="btn btn-primary">Powrót</a>
+    </div>
 {% endblock %}
