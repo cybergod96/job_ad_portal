@@ -33,7 +33,6 @@ def apply(request, ad_id):
             reply.advertisement = Advertisement.objects.get(pk=ad_id)
             reply_dict = dict()
             for i in range(1, form.fields_number + 1):
-                # reply_dict['field_%d' % i] = form.cleaned_data['field_%d' % i]
                 reply_dict[i] = {"label": form.fields['field_%d' % i].label,
                                  "value": form.cleaned_data['field_%d' % i]
                                  }

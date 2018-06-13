@@ -1,16 +1,26 @@
 {% extends 'jobad/base.html' %}
 
 {% block filter %}
+    <div id="container">
+    <div id="row">
+    <div id="col-md">
     <form method="get">
-    <table>
-    {{ ads.form.as_table }}
+        <div class="container-medium">
+                <h1>Filtrowanie</h1>
+    <table style="margin-top: -30px">
+    <tr><td>Nazwa pracodawcy:</td> <td class = "field_box_textarea">{{ ads.form.employer__company_name }}</td><br></tr>
+    <tr><td>Nazwa stanowiska:</td><td class = "field_box_textarea">{{ ads.form.job_title }}</td><br></tr>
+    <tr><td>Nazwa branży:</td> <td class = "field_box_textarea">{{ ads.form.employer__branch }}</td><br></tr>
     </table>
-        <button type="submit">Filtruj</button>
+        <button type="submit" class="btn btn-primary" style="margin-bottom: 5px">Filtruj</button>
     </form>
-
-    <ul>
+    <div class="list-group">
         {% for ad in ads.qs %}
-         <li><a href="{% url 'jobad:viewad' ad.id %}">{{ ad.name }}</a></li>
+         <a href="{% url 'jobad:viewad' ad.id %} " class="list-group-item">{{ ad.name }}</a>
         {% endfor %}
-    </ul>
+    </div>
+    </div>
+    </div>
+    </div>
+    </div>
 {% endblock %}

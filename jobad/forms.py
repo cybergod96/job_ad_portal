@@ -48,7 +48,6 @@ class AdvertisementApplyForm(forms.Form):
             elif field['type'] == "number":
                 self.fields['field_%d' % i] = forms.IntegerField(label=field['label'], widget=forms.NumberInput(attrs={'class':'form-control'}))
 
-
 class AddAdForm(forms.Form):
     name = forms.CharField(max_length=255, label=u"Tytuł", widget=forms.TextInput(attrs={'class':'form-control','placeholder':'Tytuł'}))
     job_title = forms.CharField(max_length=255, label=u"Stanowisko", widget=forms.TextInput(attrs={'class':'form-control','placeholder':'Stanowisko'}))
