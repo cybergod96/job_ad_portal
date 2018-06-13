@@ -16,5 +16,4 @@ urlpatterns = [
     path('account/', views.account, name='account'),
     path('logout/', views.logout_view, name='logout'),
     path('add/', views.add_ad, name='add'),
-    #path('add/custom', views.add_fields, name='custom')
 ]

@@ -12,6 +12,8 @@ from .forms import AddAdForm, LoginForm, RegisterForm, AdvertisementApplyForm, A
 
 import json
 
+from django.utils.html import format_html
+
 
 def index(request):
     return render(request, 'jobad/home.html', {"ads": Advertisement.objects.all()})
@@ -130,9 +132,54 @@ def add_ad(request):
 
 @login_required
 def edit_ad(request, ad_id):
-    # if request.method == 'POST':
+    if request.method == 'POST':
+        ad_form = AddAdForm(request.POST)
+        if ad_form.is_valid():
+            ad = Advertisement.objects.get(pk=ad_id)
+            af = ApplyForm.objects.get(advertisement_id=ad_id)
 
-    return render(request, 'jobad/addad.html')
+            ad.name = ad_form.cleaned_data['name']
+            ad.job_title = ad_form.cleaned_data['job_title']
+            ad.description = ad_form.cleaned_data['description']
+            ad.save()
+
+            num = int(request.POST['additional_fields_number'])
+            custom_fields = dict()
+            custom_fields['fields_number'] = num
+            for i in range(1, num + 1):
+                custom_fields['field_%d' % i] = {"label": request.POST['field%d_label' % i],
+                                                 "type": request.POST['field%d_type' % i]}
+            af.content = json.dumps(custom_fields, ensure_ascii=False)
+            af.save()
+            return redirect('jobad:account')
+    else:
+        form_data = eval(ApplyForm.objects.get(advertisement_id=ad_id).content)
+        fields_num = form_data['fields_number']
+        fields_content = ""
+        ad = Advertisement.objects.get(pk=ad_id)
+        ad_form = AddAdForm()
+        ad_form.fill(ad.name, ad.job_title, ad.description)
+        for i in range(1, fields_num + 1):
+            sel_text = "selected" if form_data['field_%d' % i]['type'] == "text" else ""
+            sel_textarea = "selected" if form_data['field_%d' % i]['type'] == "textarea" else ""
+            sel_number = "selected" if form_data['field_%d' % i]['type'] == "number" else ""
+            fields_content += """ <div id="div_field_%d" class="field_box">
+            <label for="fileld%d_label" id="label_%d" class="field_box_label">Etykieta: </label>
+            <input type="text" name="field%d_label" id="txt_%d" class="field_box_textarea" value="%s">
+            <label for="field%d_type" id="label2_%d" class="field_box_label">Typ: </label>         
+            <select name="field%d_type" id="select_%d" class="field_box_select">
+            <option value="text" %s>Pole tekstowe</option>
+            <option value="textarea" %s>Pole tekstowe (długie)</option>
+            <option value="textnumber" %s>Liczba</option>
+            </select>
+            
+            </div>""" % (
+            i, i, i, i, i, form_data['field_%d' % i]['label'], i, i, i, i, sel_text, sel_textarea, sel_number)
+    return render(request, 'jobad/editad.html', {"additional_fields_number": fields_num,
+                                                 "additional_fields": format_html(fields_content),
+                                                 "form": ad_form,
+                                                 "hidden":  format_html("""<input type="hidden" value="%d" id="additional_fields_number" name="additional_fields_number">""" % fields_num),
+                                                 "jstest": "Hadas"})
 
 
 @login_required

@@ -5,11 +5,10 @@
     <div class="form-group">
     <div id="text-col">
     {% for r in replies %}
-        <p id="reply">
+        <div id="reply">
             {{ r.get_html }}
-        </p>
+        </div>
     {% endfor %}
-    {{ answer }}
     </div>
     <div class="dodaj-pole"><a href="{% url 'jobad:account' %}">Powrót</a></div>
     </div>

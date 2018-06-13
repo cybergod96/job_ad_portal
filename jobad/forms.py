@@ -49,8 +49,13 @@ class AdvertisementApplyForm(forms.Form):
                 self.fields['field_%d' % i] = forms.IntegerField(label=field['label'], widget=forms.NumberInput(attrs={'class':'form-control'}))
 
 
-
 class AddAdForm(forms.Form):
     name = forms.CharField(max_length=255, label=u"Tytuł", widget=forms.TextInput(attrs={'class':'form-control','placeholder':'Tytuł'}))
     job_title = forms.CharField(max_length=255, label=u"Stanowisko", widget=forms.TextInput(attrs={'class':'form-control','placeholder':'Stanowisko'}))
     description = forms.CharField(max_length=512, label=u"Opis", widget=forms.Textarea(attrs={'class':'form-control','placeholder':'Opis'}))
+
+    def fill(self, n, jt, d):
+        self.fields['name'].initial = n
+        self.fields['job_title'].initial = jt
+        self.fields['description'].initial = d
+        pass

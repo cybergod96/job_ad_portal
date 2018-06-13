@@ -1,4 +1,4 @@
-var num = 1;
+var num = 1;//parseInt(document.getElementById("additional_fields_number").value);
 
 function removeField(i){
 	document.getElementById("div_field_"+i).remove();
@@ -31,7 +31,7 @@ function fixNumeration(i,n){
 }
 
 function appendField(first){
-var i = num;
+var i = num;//parseInt(document.getElementById("additional_fields_number").value)+1;
 form = document.forms["applyform"];
 var div = document.createElement("div");
 div.id = "div_field_"+i;
@@ -89,3 +89,4 @@ document.getElementById("additional_fields_number").value=num;
 num++;
 }
 appendField(true);
+//fixNumeration(1,parseInt(document.getElementById("additional_fields_number").value))

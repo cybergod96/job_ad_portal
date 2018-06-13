@@ -1,0 +1,37 @@
+{% extends 'jobad/base.html' %}
+{% load static %}
+
+{% block editad %}
+    <div class="container-medium">
+        <form method="post" name="applyform">
+            <h1>Etytuj ogłoszenie</h1>
+            {% csrf_token %}
+            {% for error in form.non_field_errors %}
+                    <div class="form-group has-errors text-danger small">
+                        {{error}}
+                    </div>
+            {% endfor %}
+            {% for field in form %}
+                    <div class="form-group has-errors text-danger small">
+                        {{field.errors}}
+                    </div>
+                    <div class="form-group has-errors text-danger small">
+                    </div>
+                    <div class="form-group">
+                        {{field}}
+                    </div>
+            {% endfor %}
+            <h2>Formularz odpowiedzi</h2>
+            {{ hidden }}
+
+            <div id="additional_fields">{{ additional_fields }}</div>
+            <script type="text/javascript" src="{% static "js/additional_fields.js" %}"></script>
+            <script type="text/javascript">
+                //document.getElementById("additional_fields_number").value = String(parseInt({{ additional_fields_number }})+1);
+                //fixNumeration(1,parseInt(document.getElementById("additional_fields_number").value));
+            </script>
+            <div class="dodaj-pole"><a href="#" onclick="appendField(false)">Dodaj pole</a> </div><br>
+            <button class="btn btn-primary" style="width:100%">Edytuj ogłoszenie</button>
+        </form>
+    </div>
+{% endblock %}
